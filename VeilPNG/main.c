@@ -524,6 +524,9 @@ DWORD WINAPI ExtractVeilThread(LPVOID param) {
     }
     else {
         const TCHAR* error_message = get_last_error_message();
+        if (error_message == NULL || _tcslen(error_message) == 0) {
+            error_message = _T("An error occurred during extraction.");
+        }
         PostMessage(hwnd, WM_UPDATE_STATUS_TEXT, 0, (LPARAM)_tcsdup(error_message));
     }
 

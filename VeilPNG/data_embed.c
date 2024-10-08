@@ -250,8 +250,8 @@ int extract_data_from_png(const TCHAR* png_path, const TCHAR* output_folder, con
         ULONGLONG delay = (elapsedTime < 5000) ? (5000 - elapsedTime) : 0;
         Sleep((DWORD)delay);
 
-        const TCHAR* encryption_error = get_encryption_error_message();
-        _tcscpy_s(last_error_message, _countof(last_error_message), encryption_error);
+        // Provide a generic error message
+        _tcscpy_s(last_error_message, _countof(last_error_message), _T("An error occurred during decryption."));
         return -1;
     }
 
@@ -261,7 +261,7 @@ int extract_data_from_png(const TCHAR* png_path, const TCHAR* output_folder, con
     if (decrypted_size < 32) {
         SecureZeroMemory(decrypted_data, decrypted_size);
         free(decrypted_data);
-        _tcscpy_s(last_error_message, _countof(last_error_message), _T("Decrypted data is too small."));
+        _tcscpy_s(last_error_message, _countof(last_error_message), _T("An error occurred during decryption."));
         return -1;
     }
 
@@ -276,14 +276,14 @@ int extract_data_from_png(const TCHAR* png_path, const TCHAR* output_folder, con
     if (generate_hmac(password, data_with_hmac, data_size, computed_hmac) != 0) {
         SecureZeroMemory(decrypted_data, decrypted_size);
         free(decrypted_data);
-        _tcscpy_s(last_error_message, _countof(last_error_message), _T("HMAC generation failed."));
+        _tcscpy_s(last_error_message, _countof(last_error_message), _T("An error occurred during decryption."));
         return -1;
     }
 
     if (memcmp(expected_hmac, computed_hmac, 32) != 0) {
         SecureZeroMemory(decrypted_data, decrypted_size);
         free(decrypted_data);
-        _tcscpy_s(last_error_message, _countof(last_error_message), _T("Data integrity check failed. HMAC does not match."));
+        _tcscpy_s(last_error_message, _countof(last_error_message), _T("An error occurred during decryption."));
         return -1;
     }
 

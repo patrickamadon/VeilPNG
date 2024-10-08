@@ -7,10 +7,6 @@
 #include <windows.h>
 #undef WIN32_NO_STATUS
 
-#ifndef BCRYPT_AUTHENTICATED_CIPHER_FLAG
-#define BCRYPT_AUTHENTICATED_CIPHER_FLAG 0x00000001
-#endif
-
 #include <ntstatus.h>
 #include <bcrypt.h>
 #pragma comment(lib, "bcrypt.lib")
@@ -127,17 +123,7 @@ int encrypt_data(unsigned char* plaintext, size_t plaintext_len, const TCHAR* pa
 
     // Encrypt
     ULONG cbResult = 0;
-    if (!BCRYPT_SUCCESS(status = BCryptEncrypt(
-        hKey,
-        plaintext,
-        (ULONG)plaintext_len,
-        &authInfo,
-        NULL,
-        0,
-        *ciphertext + SALT_SIZE + IV_SIZE + TAG_SIZE,
-        (ULONG)*ciphertext_len,
-        &cbResult,
-        BCRYPT_AUTHENTICATED_CIPHER_FLAG))) {
+    if (!BCRYPT_SUCCESS(status = BCryptEncrypt(hKey, plaintext, (ULONG)plaintext_len, &authInfo, NULL, 0, *ciphertext + SALT_SIZE + IV_SIZE + TAG_SIZE, (ULONG)*ciphertext_len, &cbResult, 0))) {
         _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Encryption failed."));
         free(*ciphertext);
         *ciphertext = NULL;
@@ -171,7 +157,7 @@ int encrypt_data(unsigned char* plaintext, size_t plaintext_len, const TCHAR* pa
 int decrypt_data(unsigned char* ciphertext, size_t ciphertext_len, const TCHAR* password,
     unsigned char** plaintext, size_t* plaintext_len) {
     if (ciphertext_len < SALT_SIZE + IV_SIZE + TAG_SIZE) {
-        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Ciphertext is too short."));
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
         return -1;
     }
 
@@ -184,24 +170,30 @@ int decrypt_data(unsigned char* ciphertext, size_t ciphertext_len, const TCHAR* 
     unsigned char* enc_data = ciphertext + SALT_SIZE + IV_SIZE + TAG_SIZE;
     size_t enc_data_len = ciphertext_len - SALT_SIZE - IV_SIZE - TAG_SIZE;
 
+    // Ensure enc_data_len is greater than zero
+    if (enc_data_len == 0) {
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
+        return -1;
+    }
+
     // Derive key and IV
     unsigned char key[KEY_SIZE];
     unsigned char derived_iv[IV_SIZE];  // Not used in decryption
     if (derive_key_iv(password, salt, key, derived_iv) != 0) {
-        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Key derivation failed."));
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
         return -1;
     }
 
     // Open algorithm provider
     BCRYPT_ALG_HANDLE hAlg = NULL;
     if (!BCRYPT_SUCCESS(status = BCryptOpenAlgorithmProvider(&hAlg, BCRYPT_AES_ALGORITHM, NULL, 0))) {
-        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Failed to open AES algorithm provider."));
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
         return -1;
     }
 
     // Set chaining mode to GCM
     if (!BCRYPT_SUCCESS(status = BCryptSetProperty(hAlg, BCRYPT_CHAINING_MODE, (PUCHAR)BCRYPT_CHAIN_MODE_GCM, sizeof(BCRYPT_CHAIN_MODE_GCM), 0))) {
-        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Failed to set chaining mode to GCM."));
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
         BCryptCloseAlgorithmProvider(hAlg, 0);
         return -1;
     }
@@ -211,20 +203,20 @@ int decrypt_data(unsigned char* ciphertext, size_t ciphertext_len, const TCHAR* 
     DWORD keyObjectSize = 0;
     DWORD result = 0;
     if (!BCRYPT_SUCCESS(status = BCryptGetProperty(hAlg, BCRYPT_OBJECT_LENGTH, (PUCHAR)&keyObjectSize, sizeof(DWORD), &result, 0))) {
-        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Failed to get key object size."));
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
         BCryptCloseAlgorithmProvider(hAlg, 0);
         return -1;
     }
 
     PUCHAR keyObject = (PUCHAR)malloc(keyObjectSize);
     if (keyObject == NULL) {
-        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Memory allocation failed."));
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
         BCryptCloseAlgorithmProvider(hAlg, 0);
         return -1;
     }
 
     if (!BCRYPT_SUCCESS(status = BCryptGenerateSymmetricKey(hAlg, &hKey, keyObject, keyObjectSize, key, KEY_SIZE, 0))) {
-        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Failed to generate symmetric key."));
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
         free(keyObject);
         BCryptCloseAlgorithmProvider(hAlg, 0);
         return -1;
@@ -244,27 +236,30 @@ int decrypt_data(unsigned char* ciphertext, size_t ciphertext_len, const TCHAR* 
     *plaintext_len = enc_data_len;
     *plaintext = (unsigned char*)malloc(*plaintext_len);
     if (*plaintext == NULL) {
-        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Memory allocation failed."));
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
         BCryptDestroyKey(hKey);
         free(keyObject);
         BCryptCloseAlgorithmProvider(hAlg, 0);
         return -1;
     }
 
-    // Decrypt
+    // Declare cbResult before using it
     ULONG cbResult = 0;
-    if (!BCRYPT_SUCCESS(status = BCryptDecrypt(
-        hKey,
-        enc_data,
-        (ULONG)enc_data_len,
-        &authInfo,
-        NULL,
-        0,
-        *plaintext,
-        (ULONG)*plaintext_len,
-        &cbResult,
-        BCRYPT_AUTHENTICATED_CIPHER_FLAG))) {
-        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("Decryption failed. Incorrect password or data corrupted."));
+
+    // Decrypt within a structured exception handler
+    __try {
+        if (!BCRYPT_SUCCESS(status = BCryptDecrypt(hKey, enc_data, (ULONG)enc_data_len, &authInfo, NULL, 0, *plaintext, (ULONG)*plaintext_len, &cbResult, 0))) {
+            _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
+            free(*plaintext);
+            *plaintext = NULL;
+            BCryptDestroyKey(hKey);
+            free(keyObject);
+            BCryptCloseAlgorithmProvider(hAlg, 0);
+            return -1;
+        }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+        _tcscpy_s(encryption_error_message, _countof(encryption_error_message), _T("An error occurred during decryption."));
         free(*plaintext);
         *plaintext = NULL;
         BCryptDestroyKey(hKey);
@@ -285,7 +280,6 @@ int decrypt_data(unsigned char* ciphertext, size_t ciphertext_len, const TCHAR* 
     ret = 0;
     return ret;
 }
-
 
 // Function to derive key and IV
 int derive_key_iv(const TCHAR* password, unsigned char* salt, unsigned char* key, unsigned char* iv) {
