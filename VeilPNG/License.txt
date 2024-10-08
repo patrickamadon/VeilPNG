@@ -1,0 +1,91 @@
+VeilPNG License Agreement
+
+Version 1.0
+
+Last Updated: 10/7/2024
+
+------------------------------------
+
+1. Grant of License
+
+This software application, VeilPNG ("Software"), is provided free of charge for personal and non-commercial use only. By downloading, installing, or using the Software, you agree to the terms of this License Agreement.
+
+------------------------------------
+
+2. Permitted Use
+
+- **Personal Use**: You are granted the non-exclusive, non-transferable right to install and use the Software on any number of computers solely for your personal, non-commercial purposes.
+- **Distribution**: You may distribute unmodified copies of the Software to others for personal, non-commercial use, provided that this License Agreement accompanies all copies.
+
+------------------------------------
+
+3. Prohibited Use
+
+- **Commercial Use**: You may not use the Software for any commercial purposes without prior written consent from the author. Commercial purposes include, but are not limited to, selling, licensing, renting, or any form of generating revenue from the Software.
+- **Modification**: You may not modify, reverse engineer, decompile, or disassemble the Software in any way.
+- **Derivative Works**: You may not create derivative works based on the Software.
+- **Removal of Notices**: You may not remove or alter any proprietary notices, labels, or marks on the Software.
+
+------------------------------------
+
+4. Ownership
+
+All rights, title, and interest in and to the Software, including any updates, enhancements, and modifications, are and shall remain the exclusive property of the author. This License Agreement does not grant you any ownership rights to the Software.
+
+------------------------------------
+
+5. Disclaimer of Warranties
+
+The Software is provided "AS IS" without warranties of any kind, either express or implied. The author expressly disclaims all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+
+------------------------------------
+
+6. Limitation of Liability
+
+In no event shall the author be liable for any direct, indirect, incidental, special, consequential, or exemplary damages arising out of or in any way related to the use of or inability to use the Software, even if advised of the possibility of such damages.
+
+------------------------------------
+
+7. Indemnification
+
+You agree to indemnify, defend, and hold harmless the author from any claims, liabilities, damages, losses, or expenses arising from your use of the Software or violation of this License Agreement.
+
+------------------------------------
+
+8. Termination
+
+This License Agreement is effective until terminated. Your rights under this License Agreement will terminate automatically without notice if you fail to comply with any term(s) of this License Agreement. Upon termination, you must cease all use and destroy all copies of the Software.
+
+------------------------------------
+
+9. Governing Law
+
+This License Agreement shall be governed by and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions.
+
+------------------------------------
+
+10. Entire Agreement
+
+This License Agreement constitutes the entire agreement between you and the author regarding the Software and supersedes any prior understandings or agreements, whether oral or written.
+
+------------------------------------
+
+11. Severability
+
+If any provision of this License Agreement is held to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.
+
+------------------------------------
+
+12. No Waiver
+
+The failure of the author to enforce any right or provision of this License Agreement shall not constitute a waiver of such right or provision.
+
+------------------------------------
+
+13. Contact Information
+
+For inquiries regarding this Software or License Agreement, please contact: @Amadon
+
+------------------------------------
+
+By using this Software, you acknowledge that you have read this License Agreement, understand it, and agree to be bound by its terms and conditions.

@@ -1,0 +1,48 @@
+=============================================================
+                      VeilPNG - Pre-Installation Information
+=============================================================
+
+Version: 1.0
+Last Updated: 10/7/2024
+
+Thank you for choosing VeilPNG! Before you proceed with the installation, please carefully review the following information to ensure proper usage and compatibility of the software.
+
+-------------------------------------------------------------
+1. System Requirements
+-------------------------------------------------------------
+
+- Operating System: Windows 7, 8, 10, or later
+- Processor: Intel/AMD dual-core processor or better
+- RAM: 2GB minimum (4GB recommended)
+- Disk Space: 50MB available for installation
+- Additional Software: .NET Framework 4.5 or higher may be required
+
+-------------------------------------------------------------
+2. Important Notes
+-------------------------------------------------------------
+
+- VeilPNG is designed for personal, non-commercial use only.
+- This software embeds sensitive data into PNG images. Always use strong passwords when protecting sensitive information.
+- Make sure your antivirus software allows VeilPNG. Some antivirus programs may flag certain executable files due to their encryption nature.
+
+-------------------------------------------------------------
+3. Installation Instructions
+-------------------------------------------------------------
+
+1. Run the VeilPNG Setup (VeilPNG_Setup.exe).
+2. Follow the on-screen instructions to complete the installation.
+3. Once installed, launch VeilPNG from the Start Menu or Desktop.
+
+-------------------------------------------------------------
+4. License Agreement
+-------------------------------------------------------------
+
+Please review the License Agreement in the installation package. By installing this software, you agree to the terms and conditions of the License Agreement.
+
+-------------------------------------------------------------
+5. Contact and Support
+-------------------------------------------------------------
+
+If you encounter any issues during the installation process, feel free to contact @Amadon for support.
+
+=============================================================

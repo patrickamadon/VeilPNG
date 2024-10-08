@@ -1,0 +1,57 @@
+=============================================================
+                      VeilPNG - Post-Installation Information
+=============================================================
+
+Version: 1.0
+Last Updated: 10/7/2024
+
+Thank you for installing VeilPNG! Below is some important information regarding the usage of the software and how to get the most out of its features.
+
+-------------------------------------------------------------
+1. Usage Instructions
+-------------------------------------------------------------
+
+VeilPNG allows you to securely hide data within PNG images using encryption.
+
+To get started:
+
+1. Launch the application from your Start Menu or Desktop shortcut.
+2. Select a PNG image and the file you wish to hide.
+3. Enter a secure password.
+4. Click "Create Veil" to embed the data.
+5. To extract the hidden data, select the PNG file, enter the correct password, and click "Extract Veil."
+
+-------------------------------------------------------------
+2. Features Overview
+-------------------------------------------------------------
+
+- **Strong Encryption**: AES-256-GCM encryption to protect your data.
+- **Password Protection**: Choose a strong password to secure the hidden file.
+- **Easy Extraction**: Simply input the correct password to retrieve the hidden file from the PNG image.
+
+-------------------------------------------------------------
+3. Recommended Usage
+-------------------------------------------------------------
+
+- **Secure Password**: Always use a strong password containing uppercase letters, lowercase letters, digits, and special characters.
+- **Backup**: It is recommended to create backups of the original files you are hiding, in case the password is lost.
+- **Integrity Check**: VeilPNG will verify the integrity of the data using HMAC-SHA256.
+
+-------------------------------------------------------------
+4. Uninstallation Instructions
+-------------------------------------------------------------
+
+If you wish to uninstall VeilPNG:
+
+1. Open "Control Panel" -> "Programs and Features."
+2. Locate "VeilPNG" in the list of installed programs.
+3. Select it and click "Uninstall."
+4. Follow the on-screen instructions to remove the program.
+
+-------------------------------------------------------------
+5. Contact and Support
+-------------------------------------------------------------
+
+For any further assistance or questions, contact @Amadon for support.
+
+=============================================================
