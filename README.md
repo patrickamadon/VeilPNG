@@ -148,14 +148,11 @@ The license is terminated if the terms are violated.
 **9. Governing Law:**
 The license is governed by the laws of your country/state.
 
-**10. Contact Information:**
-For inquiries, contact Amadon at your.email@example.com.
-
 ---------------------------------------
 
 8. CONTACT INFORMATION:
 
-@Amadon
+@amadon
 
 ---------------------------------------
 
