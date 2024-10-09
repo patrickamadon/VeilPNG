@@ -2,29 +2,23 @@
               VeilPNG
 =======================================
 
-VeilPNG is a utility designed to securely hide sensitive data within PNG images using strong encryption and compression techniques. It allows users to embed any file or directory into a PNG image by compressing the data and encrypting it with a password using AES-256-GCM encryption. The encryption key is derived from the password using PBKDF2 with HMAC-SHA256, utilizing a unique salt and high iteration count to enhance security against brute-force attacks. The encrypted data is stored within a custom ancillary chunk in the PNG file format, ensuring the image remains valid while concealing the hidden content. Users can later extract the hidden file by providing the correct password, which also verifies data integrity through an HMAC-SHA256 hash.
+VeilPNG is a utility designed to securely hide sensitive data within PNG images using strong encryption and compression techniques. It allows users to embed any file or directory into a PNG image by compressing the data and encrypting it with a password using AES-256-GCM encryption. The encryption key is derived from the password using PBKDF2 with HMAC-SHA256, utilizing a unique salt and a high iteration count to enhance security against brute-force attacks. The encrypted data is stored within a custom ancillary chunk in the PNG file format, ensuring the image remains valid while concealing the hidden content. Users can later extract the hidden file by providing the correct password, which also verifies data integrity through an HMAC-SHA256 hash.
 
----------------------------------------
+## Table of Contents
+- [Features](#features)
+- [Technical Overview](#technical-overview)
+  - [Data Embedding Process](#data-embedding-process)
+  - [Data Extraction Process](#data-extraction-process)
+- [Security Considerations](#security-considerations)
+- [Installation](#installation)
+- [Usage Instructions](#usage-instructions)
+  - [Embedding Data into a PNG Image](#embedding-data-into-a-png-image)
+  - [Extracting Data from a PNG Image](#extracting-data-from-a-png-image)
+- [Limitations](#limitations)
+- [License](#license)
+- [Contact Information](#contact-information)
 
-TABLE OF CONTENTS:
-
-1. Features
-2. Technical Overview
-   - Data Embedding Process
-   - Data Extraction Process
-3. Security Considerations
-4. Installation
-5. Usage Instructions
-   - Embedding Data into a PNG Image
-   - Extracting Data from a PNG Image
-6. Limitations
-7. License
-8. Contact Information
-
----------------------------------------
-
-1. FEATURES:
-
+## Features
 - Strong Encryption (AES-256-GCM)
 - Secure Key Derivation (PBKDF2 with HMAC-SHA256)
 - Data Integrity Verification (HMAC-SHA256)
@@ -33,130 +27,76 @@ TABLE OF CONTENTS:
 - Random Padding for Additional Security
 - Password Strength Validation
 
----------------------------------------
-
-2. TECHNICAL OVERVIEW:
+## Technical Overview
 
 ### Data Embedding Process:
-1. Input Validation: Ensures fields are filled and passwords are strong.
-2. Data Reading: Reads the file or directory to be hidden.
-3. File Name Handling: Converts file name to UTF-8 and stores its length.
-4. Data Packaging: Combines file name and data into a buffer.
-5. Random Padding: Adds random padding to the buffer.
-6. Compression: Compresses the buffer using zlib.
-7. HMAC Generation: Generates HMAC-SHA256 for data integrity.
-8. Encryption: Encrypts the data using AES-256-GCM.
-9. PNG Modification: Embeds the encrypted data into a custom ancillary PNG chunk.
-10. Output: Writes the modified PNG to the specified output file.
+1. **Input Validation:** Ensures fields are filled and passwords are strong.
+2. **Data Reading:** Reads the file or directory to be hidden.
+3. **File Name Handling:** Converts file name to UTF-8 and stores its length.
+4. **Data Packaging:** Combines file name and data into a buffer.
+5. **Random Padding:** Adds random padding to the buffer.
+6. **Compression:** Compresses the buffer using zlib.
+7. **HMAC Generation:** Generates HMAC-SHA256 for data integrity.
+8. **Encryption:** Encrypts the data using AES-256-GCM.
+9. **PNG Modification:** Embeds the encrypted data into a custom ancillary PNG chunk.
+10. **Output:** Writes the modified PNG to the specified output file.
 
 ### Data Extraction Process:
-1. Input Validation: Ensures fields are filled.
-2. PNG Reading: Reads the PNG data.
-3. Chunk Extraction: Extracts custom ancillary chunk from PNG.
-4. Decryption: Decrypts the data using AES-256-GCM.
-5. Integrity Verification: Verifies HMAC-SHA256 for data integrity.
-6. Decompression: Decompresses the data.
-7. Data Reconstruction: Extracts the original file name and data.
-8. Output: Writes the extracted data to the specified output folder.
+1. **Input Validation:** Ensures fields are filled.
+2. **PNG Reading:** Reads the PNG data.
+3. **Chunk Extraction:** Extracts custom ancillary chunk from PNG.
+4. **Decryption:** Decrypts the data using AES-256-GCM.
+5. **Integrity Verification:** Verifies HMAC-SHA256 for data integrity.
+6. **Decompression:** Decompresses the data.
+7. **Data Reconstruction:** Extracts the original file name and data.
+8. **Output:** Writes the extracted data to the specified output folder.
 
----------------------------------------
+## Security Considerations
+- **Encryption:** Uses AES-256-GCM for encryption and integrity.
+- **Key Derivation:** Uses PBKDF2 with HMAC-SHA256, 16-byte salt, and 100,000 iterations.
+- **Random Padding:** Prevents size analysis by adding random padding.
+- **HMAC Verification:** Ensures data integrity with HMAC-SHA256.
+- **Password Strength:** Requires strong passwords with complexity.
+- **Secure Memory Handling:** Passwords and decrypted data are securely erased from memory.
+- **Timing Attack Mitigation:** Introduces delays on decryption failure to prevent timing attacks.
 
-3. SECURITY CONSIDERATIONS:
-
-- **Encryption**: Uses AES-256-GCM for encryption and integrity.
-- **Key Derivation**: Uses PBKDF2 with HMAC-SHA256, 16-byte salt, and 100,000 iterations.
-- **Random Padding**: Prevents size analysis by adding random padding.
-- **HMAC Verification**: Ensures data integrity with HMAC-SHA256.
-- **Password Strength**: Requires strong passwords with complexity.
-- **Secure Memory Handling**: Passwords and decrypted data are securely erased from memory.
-- **Timing Attack Mitigation**: Introduces delays on decryption failure to prevent timing attacks.
-
----------------------------------------
-
-4. INSTALLATION:
+## Installation
 
 ### Prerequisites:
-- **OS**: Windows 7 or later.
-- **Dependencies**: No additional installations required; all dependencies are statically linked.
+- **OS:** Windows 7 or later.
+- **Dependencies:** No additional installations required; all dependencies are statically linked.
 
 ### Steps:
-1. **Download**: Obtain the `VeilPNGInstaller.msi`.
-2. **Run Installer**: Double-click to start the installation process.
-3. **Installation Wizard**: Follow the on-screen instructions.
-4. **Completion**: Once installed, the application is ready to use.
+1. **Download:** Obtain the `VeilPNGInstaller.msi`.
+2. **Run Installer:** Double-click to start the installation process.
+3. **Installation Wizard:** Follow the on-screen instructions.
+4. **Completion:** Once installed, the application is ready to use.
 
----------------------------------------
-
-5. USAGE INSTRUCTIONS:
+## Usage Instructions
 
 ### Embedding Data into a PNG Image:
-1. **Launch VeilPNG**.
-2. **Select PNG File**: Browse for the PNG image.
-3. **Select Hidden File**: Browse for the file to hide.
-4. **Enter Password**: Input a strong password.
-5. **Create Veil**: Click the "Create Veil" button.
-6. **Result**: The PNG file will now contain the hidden data.
+1. Launch VeilPNG.
+2. Select **PNG File:** Browse for the PNG image.
+3. Select **Hidden File:** Browse for the file to hide.
+4. Enter **Password:** Input a strong password.
+5. Click the **Create Veil** button.
+6. The PNG file will now contain the hidden data.
 
 ### Extracting Data from a PNG Image:
-1. **Launch VeilPNG**.
-2. **Select PNG File**: Browse for the PNG image containing the hidden data.
-3. **Enter Password**: Input the correct password.
-4. **Extract Veil**: Click the "Extract Veil" button.
-5. **Result**: The hidden file is extracted to the output folder.
+1. Launch VeilPNG.
+2. Select **PNG File:** Browse for the PNG image containing the hidden data.
+3. Enter **Password:** Input the correct password.
+4. Click the **Extract Veil** button.
+5. The hidden file is extracted to the output folder.
 
----------------------------------------
-
-6. LIMITATIONS:
-
+## Limitations
 - Large files may result in oversized PNG images.
 - Password recovery is impossible; keep your password secure.
 - Some image editors may remove the custom chunk when modifying the PNG.
 - Currently, VeilPNG supports only Windows OS.
 
----------------------------------------
+## License
+This project is licensed under the MIT License.
 
-7. LICENSE:
 
-**VeilPNG License Agreement**
-
-**1. Grant of License:**
-This software is provided free for personal and non-commercial use.
-
-**2. Permitted Use:**
-- Personal use only.
-- You may distribute unmodified copies for personal use.
-
-**3. Prohibited Use:**
-- No commercial use without permission.
-- No modification, reverse engineering, or derivative works.
-
-**4. Ownership:**
-All rights remain with the author.
-
-**5. Disclaimer of Warranties:**
-The software is provided "AS IS" without any warranties.
-
-**6. Limitation of Liability:**
-The author is not liable for any damages related to the use of the software.
-
-**7. Indemnification:**
-You agree to indemnify the author from any claims related to your use of the software.
-
-**8. Termination:**
-The license is terminated if the terms are violated.
-
-**9. Governing Law:**
-The license is governed by the laws of your country/state.
-
----------------------------------------
-
-8. CONTACT INFORMATION:
-
-@amadon
-
----------------------------------------
-
-DISCLAIMER: VeilPNG is intended for lawful use only. The author is not responsible for any misuse of this application.
-
----------------------------------------
 
