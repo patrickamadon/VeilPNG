@@ -117,39 +117,15 @@ TABLE OF CONTENTS:
 
 7. LICENSE:
 
-**VeilPNG License Agreement**
+MIT License
 
-**1. Grant of License:**
-This software is provided free for personal and non-commercial use.
+Copyright (c) [2024] [VeilPNG - @amadon]
 
-**2. Permitted Use:**
-- Personal use only.
-- You may distribute unmodified copies for personal use.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-**3. Prohibited Use:**
-- No commercial use without permission.
-- No modification, reverse engineering, or derivative works.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-**4. Ownership:**
-All rights remain with the author.
-
-**5. Disclaimer of Warranties:**
-The software is provided "AS IS" without any warranties.
-
-**6. Limitation of Liability:**
-The author is not liable for any damages related to the use of the software.
-
-**7. Indemnification:**
-You agree to indemnify the author from any claims related to your use of the software.
-
-**8. Termination:**
-The license is terminated if the terms are violated.
-
-**9. Governing Law:**
-The license is governed by the laws of your country/state.
-
-**10. Contact Information:**
-For inquiries, contact Amadon at your.email@example.com.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---------------------------------------
 
