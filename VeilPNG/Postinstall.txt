@@ -1,0 +1,79 @@
+=============================================================
+              VeilPNG - Post-Installation Information
+=============================================================
+
+Version: 1.0  
+Last Updated: 10/7/2024
+
+Thank you for installing VeilPNG and sVeil! Below is important information regarding usage, features, and how to get the most out of the software.
+
+-------------------------------------------------------------
+1. Usage Instructions
+-------------------------------------------------------------
+
+VeilPNG and sVeil allow you to securely hide data within PNG images using encryption, with slight differences in how data is stored:
+
+### For VeilPNG:
+1. Launch the application from your Start Menu or Desktop shortcut.
+2. Select a PNG image and the file you wish to hide.
+3. Enter a secure password.
+4. Click "Create Veil" to embed the data in a custom ancillary PNG chunk.
+5. To extract the hidden data, select the PNG file, enter the correct password, and click "Extract Veil."
+
+### For sVeil:
+1. Select a PNG image and the file you wish to hide, similar to VeilPNG.
+2. Enter a password and click "Create sVeil."
+3. sVeil appends the hidden file to the **IDAT** chunk within the PNG's deflate stream, focusing on secure storage.
+4. To extract the hidden file, follow the same process, ensuring you input the correct password when prompted.
+
+-------------------------------------------------------------
+2. Features Overview
+-------------------------------------------------------------
+
+- **Strong Encryption**: Both VeilPNG and sVeil use AES-256-GCM encryption for data protection.
+- **Password Protection**: Choose a strong password to secure the hidden file.
+- **Data Storage Flexibility**: 
+   - VeilPNG preserves the visual integrity of the image by embedding hidden data in ancillary chunks.
+   - sVeil focuses on secure file storage by appending data to the deflate stream of the **IDAT** chunk, potentially compromising image appearance but ensuring the PNG remains valid.
+- **Easy Extraction**: Simply input the correct password to retrieve the hidden file.
+
+-------------------------------------------------------------
+3. Recommended Usage
+-------------------------------------------------------------
+
+### VeilPNG:
+- **Visual Integrity**: Ideal when you need to preserve the appearance and compatibility of the PNG image while securely storing hidden data.
+- **Password Security**: Always use a strong password (uppercase, lowercase, digits, special characters) to protect the hidden file.
+- **Backup**: Make sure to create backups of the original files before hiding them, especially since password recovery is impossible.
+
+### sVeil:
+- **Maximum Security**: Use sVeil when secure data storage is the priority, even if the image appearance may be slightly corrupted. This method is particularly useful when image fidelity is less important than secure storage.
+- **File Size**: Be mindful of the file size when appending large hidden data with sVeil, as it can result in a significantly larger PNG file.
+- **Integrity Check**: VeilPNG and sVeil will verify the integrity of the hidden data using HMAC-SHA256.
+
+-------------------------------------------------------------
+4. Uninstallation Instructions
+-------------------------------------------------------------
+
+If you wish to uninstall VeilPNG and sVeil:
+
+1. Open "Control Panel" -> "Programs and Features."
+2. Locate "VeilPNG" in the list of installed programs.
+3. Select it and click "Uninstall."
+4. Follow the on-screen instructions to remove the program.
+
+-------------------------------------------------------------
+5. Contact and Support
+-------------------------------------------------------------
+
+For any further assistance or questions, contact @Amadon for support.
+
+=============================================================
+
+**When to Use VeilPNG vs. sVeil:**
+
+- **VeilPNG**: Use when you want to hide data while preserving the visual integrity of the image. Ideal for situations where the PNG file needs to remain fully compatible with various image viewers.
+  
+- **sVeil**: Use when the priority is securing sensitive data, even if it means slightly corrupting the image's appearance. sVeil appends data to the **IDAT** chunk’s deflate stream, making it more suited for secure file storage than image quality preservation.
+
+=============================================================

@@ -1,0 +1,73 @@
+=============================================================
+                      VeilPNG  - Pre-Installation Information
+=============================================================
+
+Version: 1.0
+Last Updated: 10/7/2024
+
+Thank you for choosing VeilPNG! Before you proceed with the installation, please carefully review the following information to ensure proper usage and compatibility of the software.
+
+-------------------------------------------------------------
+1. System Requirements
+-------------------------------------------------------------
+
+- Operating System: Windows 7, 8, 10, or later
+- Processor: Intel/AMD dual-core processor or better
+- RAM: 2GB minimum (4GB recommended)
+- Disk Space: 50MB available for installation
+- Additional Software: .NET Framework 4.5 or higher may be required
+
+-------------------------------------------------------------
+2. Important Notes
+-------------------------------------------------------------
+
+- **VeilPNG**: This tool embeds sensitive data into PNG images using custom PNG chunks and encryption. It ensures the image file remains valid and appears intact while securely storing your hidden data.
+  
+- **sVeil**: Similar to VeilPNG but optimized for scenarios where image appearance is less important than data security. sVeil appends hidden data directly to the trailing portion of the **IDAT** chunk within the PNG file. While this may slightly corrupt the image appearance, the integrity of the hidden data is paramount. Use strong passwords for maximum protection.
+
+- Always use strong passwords when protecting sensitive information.
+  
+- Antivirus software may flag certain executable files due to the encryption mechanisms involved. Ensure VeilPNG and sVeil are allowed by your antivirus program to avoid disruptions.
+
+-------------------------------------------------------------
+3. Installation Instructions
+-------------------------------------------------------------
+
+1. Run the VeilPNG Setup (VeilPNG_Setup.exe).
+2. Follow the on-screen instructions to complete the installation.
+3. Once installed, launch VeilPNG from the Start Menu or Desktop.
+
+-------------------------------------------------------------
+4. License Agreement
+-------------------------------------------------------------
+
+MIT License
+
+Copyright (c) 2024 Amadon
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-------------------------------------------------------------
+5. Contact and Support
+-------------------------------------------------------------
+
+If you encounter any issues during the installation process, feel free to contact @Amadon for support.
+
+=============================================================
+
+**sVeil vs VeilPNG**
+
+- **When to Use VeilPNG**:
+  - Use VeilPNG when you want the embedded data to remain completely hidden while keeping the PNG image visually intact.
+  - Ideal for use cases where maintaining the appearance and compatibility of the PNG file with various image viewers is critical.
+  
+- **When to Use sVeil**:
+  - Use sVeil when secure storage of hidden data is the primary concern, even if the image may appear slightly corrupted.
+  - This method appends the hidden file into the IDAT chunk's deflate stream, allowing secure file storage while still generating a valid PNG structure.
+  - Recommended when the primary focus is secure data storage rather than image fidelity.
+
+=============================================================
